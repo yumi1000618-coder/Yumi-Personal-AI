@@ -152,10 +152,6 @@ st.set_page_config(
 st.title("🤖 Yumi AI")
 st.subheader("Welcome to my Personal AI!")
 
-st.write(
-    "Hello! I am Yumi's personal AI. "
-    "Ask me about my personal information!"
-)
 
 # Sidebar
 with st.sidebar:
@@ -165,19 +161,18 @@ with st.sidebar:
     st.write("Height: 158 cm")
     st.write("Weight: 50 kg")
     st.write("Favorite colors: White and Black 🤍🖤")
-st.write("Birthday: June 18")
-st.write("Favorite food: Matcha")
-st.write("Favorite subject: Physical Education")
+    st.write("Birthday: June 18")
+    st.write("Favorite food: Matcha")
+    st.write("Favorite subject: Physical Education")
 
-   if st.button("Clear Chat"):
-    st.session_state.messages = []
-    st.rerun()if st.button("Clear Chat"):
-    st.session_state.messages = []
-    st.rerun()
+    if st.button("Clear Chat"):
+        st.session_state.messages = []
+        st.rerun()
 
 # Chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
+
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
