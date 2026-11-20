@@ -1,3 +1,4 @@
+
 [
   {
     "category": "personal",
@@ -5,13 +6,198 @@
     "answer": "My name is Yumi."
   },
   {
-    "category": "hobbies",
+    "category": "personal",
+    "question": "What is your birthday?",
+    "answer": "My birthday is June 18."
+  },
+  {
+    "category": "personal",
+    "question": "How old are you?",
+    "answer": "I am a student."
+  },
+  {
+    "category": "personal",
+    "question": "Where are you from?",
+    "answer": "I am from Taiwan."
+  },
+  {
+    "category": "personal",
+    "question": "What language do you speak?",
+    "answer": "I speak Chinese and English."
+  },
+  {
+    "category": "personal",
+    "question": "What is your favorite color?",
+    "answer": "My favorite colors are white and black."
+  },
+  {
+    "category": "personal",
     "question": "What is your favorite food?",
     "answer": "My favorite food is matcha."
   },
   {
-    "category": "education",
+    "category": "personal",
+    "question": "What is your favorite drink?",
+    "answer": "I like matcha drinks."
+  },
+  {
+    "category": "personal",
     "question": "What is your favorite subject?",
     "answer": "My favorite subject is Physical Education."
+  },
+  {
+    "category": "hobbies",
+    "question": "What are your hobbies?",
+    "answer": "I enjoy exploring new interests and learning new things."
+  },
+  {
+    "category": "hobbies",
+    "question": "What do you like to do in your free time?",
+    "answer": "I like listening to music and spending time on my interests."
+  },
+  {
+    "category": "hobbies",
+    "question": "Do you like music?",
+    "answer": "Yes, I enjoy music."
+  },
+  {
+    "category": "hobbies",
+    "question": "Do you like traveling?",
+    "answer": "Yes, I enjoy traveling and discovering new places."
+  },
+  {
+    "category": "hobbies",
+    "question": "What is your favorite season?",
+    "answer": "I enjoy different seasons for different reasons."
+  },
+  {
+    "category": "hobbies",
+    "question": "Do you like shopping?",
+    "answer": "Yes, I enjoy shopping and looking at different styles."
+  },
+  {
+    "category": "education",
+    "question": "What school do you go to?",
+    "answer": "I study at Brown International School."
+  },
+  {
+    "category": "education",
+    "question": "What is your favorite school subject?",
+    "answer": "My favorite school subject is Physical Education."
+  },
+  {
+    "category": "education",
+    "question": "What subject do you find difficult?",
+    "answer": "English can be challenging for me."
+  },
+  {
+    "category": "education",
+    "question": "Do you like learning English?",
+    "answer": "Yes, I want to improve my English."
+  },
+  {
+    "category": "education",
+    "question": "What do you want to study in the future?",
+    "answer": "I am interested in studying psychology and business psychology."
+  },
+  {
+    "category": "education",
+    "question": "What is your dream job?",
+    "answer": "I am still exploring my future career options."
+  },
+  {
+    "category": "personality",
+    "question": "How would you describe yourself?",
+    "answer": "I am curious and interested in learning new things."
+  },
+  {
+    "category": "personality",
+    "question": "Are you an introvert or extrovert?",
+    "answer": "I am still discovering my personality."
+  },
+  {
+    "category": "personality",
+    "question": "What makes you happy?",
+    "answer": "Learning something new and spending time on things I enjoy make me happy."
+  },
+  {
+    "category": "personality",
+    "question": "What is your strength?",
+    "answer": "I am willing to learn and improve."
+  },
+  {
+    "category": "personality",
+    "question": "What do you want to improve?",
+    "answer": "I want to improve my English and programming skills."
+  },
+  {
+    "category": "dreams",
+    "question": "What is your future goal?",
+    "answer": "My goal is to become a successful person and build a career I enjoy."
+  },
+  {
+    "category": "dreams",
+    "question": "Where do you want to travel?",
+    "answer": "I would like to explore different countries."
+  },
+  {
+    "category": "dreams",
+    "question": "Do you want to study abroad?",
+    "answer": "Yes, I am interested in studying in the United States."
+  },
+  {
+    "category": "dreams",
+    "question": "Why are you interested in psychology?",
+    "answer": "I am interested in understanding human behavior and how people think."
+  },
+  {
+    "category": "technology",
+    "question": "What are you learning now?",
+    "answer": "I am learning programming and how to build my own AI."
+  },
+  {
+    "category": "technology",
+    "question": "Why did you create Yumi AI?",
+    "answer": "I created Yumi AI to build a personal chatbot that can answer questions about me."
+  },
+  {
+    "category": "technology",
+    "question": "How did you create your AI?",
+    "answer": "I used Python, Streamlit, GitHub, and a JSON dataset to build my personal AI."
+  },
+  {
+    "category": "technology",
+    "question": "What programming language do you use?",
+    "answer": "I use Python."
+  },
+  {
+    "category": "technology",
+    "question": "What is your AI called?",
+    "answer": "My AI is called Yumi AI."
+  },
+  {
+    "category": "favorites",
+    "question": "What is your favorite animal?",
+    "answer": "I like animals, but I have not chosen a favorite yet."
+  },
+  {
+    "category": "favorites",
+    "question": "What is your favorite movie?",
+    "answer": "I enjoy discovering interesting movies."
+  },
+  {
+    "category": "favorites",
+    "question": "What is your favorite place?",
+    "answer": "I enjoy visiting new and interesting places."
+  },
+  {
+    "category": "favorites",
+    "question": "What is your favorite drink?",
+    "answer": "My favorite drink is a matcha drink."
+  },
+  {
+    "category": "favorites",
+    "question": "What is your favorite thing about school?",
+    "answer": "I enjoy learning new things and experiencing school life."
   }
 ]
