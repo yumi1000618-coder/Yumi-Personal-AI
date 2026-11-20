@@ -1,0 +1,17 @@
+[
+  {
+    "category": "personal",
+    "question": "What is your name?",
+    "answer": "My name is Yumi."
+  },
+  {
+    "category": "hobbies",
+    "question": "What is your favorite food?",
+    "answer": "My favorite food is matcha."
+  },
+  {
+    "category": "education",
+    "question": "What is your favorite subject?",
+    "answer": "My favorite subject is Physical Education."
+  }
+]
