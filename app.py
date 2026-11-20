@@ -169,9 +169,11 @@ st.write("Birthday: June 18")
 st.write("Favorite food: Matcha")
 st.write("Favorite subject: Physical Education")
 
-    if st.button("Clear Chat"):
-        st.session_state.messages = []
-        st.rerun()
+   if st.button("Clear Chat"):
+    st.session_state.messages = []
+    st.rerun()if st.button("Clear Chat"):
+    st.session_state.messages = []
+    st.rerun()
 
 # Chat history
 if "messages" not in st.session_state:
