@@ -48,19 +48,8 @@ personal_info = {
 # -----------------------------
 # Tokenize
 # -----------------------------
-def tokenize(text):
-    return re.findall(r"\b\w+\b", text.lower())
-
-
-# -----------------------------
-# AI Answer Function
-# -----------------------------
-
 def get_answer(question):
-  
-
-
-# -----------------------------
+    return search_dataset(question)
 # Streamlit Interface
 # -----------------------------
 st.set_page_config(
