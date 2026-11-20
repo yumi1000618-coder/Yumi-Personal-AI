@@ -54,6 +54,7 @@ def tokenize(text):
 # -----------------------------
 # AI Answer Function
 # -----------------------------
+
 def get_answer(question):
     q = question.lower().strip()
 
@@ -65,22 +66,44 @@ def get_answer(question):
         return "My name is Yumi!"
 
     # Shoe size
-    if any(x in q for x in [
-        "shoe", "shoes", "footwear"
-    ]):
+    if any(x in q for x in ["shoe", "shoes", "footwear"]):
         return "My shoe size is 23.5 cm."
 
     # Height
-    if any(x in q for x in [
-        "height", "tall"
-    ]):
+    if any(x in q for x in ["height", "tall"]):
         return "My height is 158 cm."
 
     # Weight
-    if any(x in q for x in [
-        "weight", "weigh"
-    ]):
+    if any(x in q for x in ["weight", "weigh"]):
         return "My weight is 50 kg."
+
+    # Favorite colors
+    if any(x in q for x in [
+        "favorite color", "favorite colors",
+        "favourite colour", "favourite colours",
+        "what color", "what colour"
+    ]):
+        return "My favorite colors are white and black! 🤍🖤"
+
+    # Birthday
+    if any(x in q for x in [
+        "birthday", "birth date", "when was i born"
+    ]):
+        return "My birthday is June 18!"
+
+    # Favorite food
+    if any(x in q for x in [
+        "favorite food", "favourite food",
+        "what food do i like", "what do i like to eat"
+    ]):
+        return "My favorite food is matcha!"
+
+    # Favorite subject
+    if any(x in q for x in [
+        "favorite subject", "favourite subject",
+        "school subject", "what subject do i like"
+    ]):
+        return "My favorite subject is Physical Education (PE)!"
 
     # All information
     if any(x in q for x in [
@@ -88,11 +111,15 @@ def get_answer(question):
         "my information", "all about me"
     ]):
         return (
-            "Here is what I know about myself:\n\n"
+            "Here is everything I know about Yumi:\n\n"
             "- Name: Yumi\n"
+            "- Birthday: June 18\n"
             "- Shoe size: 23.5 cm\n"
             "- Height: 158 cm\n"
-            "- Weight: 50 kg"
+            "- Weight: 50 kg\n"
+            "- Favorite colors: White and Black\n"
+            "- Favorite food: Matcha\n"
+            "- Favorite subject: Physical Education"
         )
 
     # Original trained AI model
@@ -109,9 +136,6 @@ def get_answer(question):
 
     with torch.no_grad():
         prediction = model(x).argmax(dim=1).item()
-
-    if prediction >= len(answers):
-        return "Sorry, I don't know the answer yet."
 
     return answers[prediction]
 
