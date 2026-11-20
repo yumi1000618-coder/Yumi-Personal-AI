@@ -2,6 +2,7 @@
 import json
 import os
 import re
+from difflib import SequenceMatcher
 
 
 def load_dataset():
@@ -14,17 +15,22 @@ def load_dataset():
         return json.load(file)
 
 
+def normalize(text):
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9\s]", " ", text)
+    return " ".join(text.split())
+
+
 def search_dataset(question):
     dataset = load_dataset()
-    question = question.lower().strip()
 
-    matched_answers = []
+    # Split the input into separate questions
+    questions = re.split(r"[?？!\n]+", question)
 
-    # Split multiple questions
-    questions = re.split(r"[?？\n]+", question)
+    answers = []
 
     for q in questions:
-        q = q.strip()
+        q = normalize(q)
 
         if not q:
             continue
@@ -33,26 +39,24 @@ def search_dataset(question):
         best_score = 0
 
         for item in dataset:
-            text = (
-                item["question"] + " " +
-                item["answer"] + " " +
-                item.get("category", "")
-            ).lower()
+            dataset_question = normalize(item["question"])
 
-            words = re.findall(r"\b[a-z0-9]+\b", q)
-            score = sum(
-                1 for word in words
-                if len(word) > 2 and word in text
-            )
+            score = SequenceMatcher(
+                None, q, dataset_question
+            ).ratio()
 
             if score > best_score:
                 best_score = score
                 best_match = item
 
-        if best_match and best_score >= 1:
-            matched_answers.append(best_match["answer"])
+        if best_match and best_score >= 0.45:
+            answers.append(best_match["answer"])
+        else:
+            answers.append(
+                "Sorry, I cannot find this information in my dataset."
+            )
 
-    if matched_answers:
-        return "\n\n".join(dict.fromkeys(matched_answers))
+    if answers:
+        return "\n\n".join(answers)
 
-    return "Sorry, I cannot find this information in my dataset."
+    return "Please enter a question."
