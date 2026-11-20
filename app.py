@@ -1,57 +1,9 @@
 
+import os
 import streamlit as st
-from personal_ai_model import search_dataset
-
-import torch
-import torch.nn as nn
-import pickle
-import re
-# -----------------------------
-# Load AI Model
-# -----------------------------
-with open("personal_ai_bundle.pkl", "rb") as f:
-    bundle = pickle.load(f)
-
-vocab = bundle["vocab"]
-answers = bundle["answers"]
-word_to_id = {word: i for i, word in enumerate(vocab)}
-
-class PersonalAI(nn.Module):
-    def __init__(self, input_size):
-        super().__init__()
-        self.network = nn.Sequential(
-            nn.Linear(input_size, 64),
-            nn.ReLU(),
-            nn.Linear(64, 8)
-        )
-
-    def forward(self, x):
-        return self.network(x)
+from personal_ai_model import get_ai_response
 
 
-model = PersonalAI(len(vocab))
-model.load_state_dict(bundle["state_dict"])
-model.eval()
-
-
-# -----------------------------
-# Personal Information
-# -----------------------------
-personal_info = {
-    "name": "Yumi",
-    "shoe_size": "23.5 cm",
-    "height": "158 cm",
-    "weight": "50 kg"
-}
-
-
-# -----------------------------
-# Tokenize
-# -----------------------------
-def get_answer(question):
-    return search_dataset(question)
-# Streamlit Interface
-# -----------------------------
 st.set_page_config(
     page_title="Yumi AI",
     page_icon="🤖",
@@ -59,48 +11,78 @@ st.set_page_config(
 )
 
 st.title("🤖 Yumi AI")
-st.subheader("Welcome to my Personal AI!")
+st.write(
+    "Hello! I am Yumi AI. "
+    "You can ask me anything in Chinese or English."
+)
 
+# Get Groq API key from Streamlit Secrets
+try:
+    api_key = st.secrets["GROQ_API_KEY"]
+except Exception:
+    api_key = os.environ.get("GROQ_API_KEY", "")
+
+if not api_key:
+    st.error(
+        "Groq API key not found. "
+        "Please add GROQ_API_KEY to Streamlit Secrets."
+    )
+    st.stop()
+
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
 # Sidebar
 with st.sidebar:
-    st.title("About Yumi")
-    st.write("Name: Yumi")
-    st.write("Shoe size: 23.5 cm")
-    st.write("Height: 158 cm")
-    st.write("Weight: 50 kg")
-    st.write("Favorite colors: White and Black 🤍🖤")
-    st.write("Birthday: June 18")
-    st.write("Favorite food: Matcha")
-    st.write("Favorite subject: Physical Education")
+    st.title("About Yumi AI")
+    st.write("Powered by Groq")
+    st.write("Supports Chinese and English.")
 
     if st.button("Clear Chat"):
         st.session_state.messages = []
         st.rerun()
 
-# Chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-
+# Display previous messages
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.write(message["content"])
+        st.markdown(message["content"])
 
 # Chat input
-question = st.chat_input("Ask me something...")
+question = st.chat_input(
+    "Ask Yumi AI anything..."
+)
 
 if question:
+    # Save user message
     st.session_state.messages.append({
         "role": "user",
         "content": question
     })
 
-    answer = get_answer(question)
+    # Display user message
+    with st.chat_message("user"):
+        st.markdown(question)
 
-    st.session_state.messages.append({
-        "role": "assistant",
-        "content": answer
-    })
+    # Generate AI response
+    with st.chat_message("assistant"):
+        with st.spinner("Yumi AI is thinking..."):
+            try:
+                answer = get_ai_response(
+                    st.session_state.messages,
+                    api_key
+                )
 
-    st.rerun()
+                st.markdown(answer)
+
+                st.session_state.messages.append({
+                    "role": "assistant",
+                    "content": answer
+                })
+
+            except Exception as e:
+                st.error(
+                    "Sorry, I could not connect to the AI. "
+                    "Please check your Groq settings. "
+                    f"Error: {e}"
+                )
